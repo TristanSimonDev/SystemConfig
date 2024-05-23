@@ -14,3 +14,5 @@ if %errorlevel% neq 0 (
 cd %~dp0
 
 call %~dp0\src\SelectUI.bat 
+
+echo hello
