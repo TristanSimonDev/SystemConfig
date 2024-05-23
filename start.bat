@@ -1,7 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
 
-
 net session >nul 2>&1
 if %errorlevel% neq 0 (
     echo This script requires administrative privileges. Restarting as administrator...
