@@ -1,5 +1,5 @@
 @echo off
-setlocal EnableDelayedExpansion
+setlocal enabledelayedexpansion
 title Deleting Local Temp
 
 cls
@@ -8,6 +8,10 @@ set original_cd=%cd%
 
 
 set counter=0
+
+for /f "tokens=2 delims=:" %%p in ('ipconfig ^| findstr IPv4') do (
+    set test=%%p
+)
 
 rem Read the count and check if exists
 if exist %original_cd%\src\User\Backend\Counters\count.json (
@@ -22,7 +26,7 @@ for /d %%a in (C:\Users\*) do (
     if exist "%%a\AppData\" (
         cd "%%a\AppData\Local\Temp\"
         for /r %%i in (*) do (        
-            echo %%i [Deleted $~$ %date% at %time:~0,5%]  
+            echo %%i [Deleted $~$ %date% at %time:~0,5%] [IPv4: %test%] 
             del "%%i"
             set /A counter+=1         
         )
